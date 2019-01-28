@@ -65,11 +65,10 @@ else:
     dataframe = pd.read_csv(filename_to_save)
 
 browser.get(facebook_url)
-browser.find_elements_by_css_selector("div.hreview")
-facebook_html_parser = BeautifulSoup(browser.page_source, 'html.parser')
-reviews_on_this_page = facebook_html_parser.select("div.hreview")
-print(len(reviews_on_this_page))
 
+extract_all_reviews_on_this_page(browser,dataframe)
+dataframe.to_csv(filename_to_save)
+go_next_page(browser)
 browser.quit()
 
 # #MainCol > div.module.snug.empStatsAndReview
